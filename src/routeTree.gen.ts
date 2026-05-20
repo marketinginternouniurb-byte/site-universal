@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as FacilitaRouteImport } from './routes/facilita'
 import { Route as ContatoRouteImport } from './routes/contato'
@@ -27,6 +28,11 @@ import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 const SobreRoute = SobreRouteImport.update({
   id: '/sobre',
   path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
+  id: '/politica-de-privacidade',
+  path: '/politica-de-privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -101,6 +107,7 @@ export interface FileRoutesByFullPath {
   '/contato': typeof ContatoRoute
   '/facilita': typeof FacilitaRoute
   '/login': typeof LoginRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre': typeof SobreRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/depoimentos': typeof AdminDepoimentosRoute
@@ -116,6 +123,7 @@ export interface FileRoutesByTo {
   '/contato': typeof ContatoRoute
   '/facilita': typeof FacilitaRoute
   '/login': typeof LoginRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre': typeof SobreRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/depoimentos': typeof AdminDepoimentosRoute
@@ -133,6 +141,7 @@ export interface FileRoutesById {
   '/contato': typeof ContatoRoute
   '/facilita': typeof FacilitaRoute
   '/login': typeof LoginRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/sobre': typeof SobreRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/depoimentos': typeof AdminDepoimentosRoute
@@ -151,6 +160,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/facilita'
     | '/login'
+    | '/politica-de-privacidade'
     | '/sobre'
     | '/admin/blog'
     | '/admin/depoimentos'
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/facilita'
     | '/login'
+    | '/politica-de-privacidade'
     | '/sobre'
     | '/admin/blog'
     | '/admin/depoimentos'
@@ -182,6 +193,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/facilita'
     | '/login'
+    | '/politica-de-privacidade'
     | '/sobre'
     | '/admin/blog'
     | '/admin/depoimentos'
@@ -199,6 +211,7 @@ export interface RootRouteChildren {
   ContatoRoute: typeof ContatoRoute
   FacilitaRoute: typeof FacilitaRoute
   LoginRoute: typeof LoginRoute
+  PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   SobreRoute: typeof SobreRoute
   EmpreendimentoIdRoute: typeof EmpreendimentoIdRoute
 }
@@ -210,6 +223,13 @@ declare module '@tanstack/react-router' {
       path: '/sobre'
       fullPath: '/sobre'
       preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-privacidade': {
+      id: '/politica-de-privacidade'
+      path: '/politica-de-privacidade'
+      fullPath: '/politica-de-privacidade'
+      preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -334,6 +354,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContatoRoute: ContatoRoute,
   FacilitaRoute: FacilitaRoute,
   LoginRoute: LoginRoute,
+  PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   SobreRoute: SobreRoute,
   EmpreendimentoIdRoute: EmpreendimentoIdRoute,
 }

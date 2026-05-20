@@ -1,14 +1,32 @@
 import { useState } from "react";
 import { MapPin, Phone, Mail, Instagram, Facebook, Music2, Send } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 export default function FooterSection() {
   const [email, setEmail] = useState("");
+  const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  const handleEmailSubmit = (e: React.FormEvent) => {
+  const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Lead captured for bot:", email);
-    alert("Inscrição realizada com sucesso! Um e-mail de boas-vindas da Universal Urbanismo foi enviado para você.");
+
+    if (!acceptedPrivacy) {
+      alert("Para continuar, aceite a Política de Privacidade e LGPD.");
+      return;
+    }
+
+    setSending(true);
+    const { error } = await supabase.from("newsletter_subscribers").insert({ email });
+    setSending(false);
+
+    if (error) {
+      alert("Não foi possível concluir sua inscrição. Tente novamente.");
+      return;
+    }
+
+    alert("Inscrição realizada com sucesso!");
     setEmail("");
+    setAcceptedPrivacy(false);
   };
 
   return (
@@ -98,7 +116,7 @@ export default function FooterSection() {
               </p>
             </div>
             
-            <form onSubmit={handleEmailSubmit} className="group relative max-w-md w-full">
+            <form onSubmit={handleEmailSubmit} className="group relative max-w-md w-full space-y-3">
               <div className="relative flex items-center">
                 <Mail className="absolute left-5 text-white/30 group-focus-within:text-[#FFD700] transition-colors duration-300" size={18} />
                 
@@ -113,11 +131,33 @@ export default function FooterSection() {
 
                 <button 
                   type="submit"
+                  disabled={sending}
                   className="absolute right-2 top-2 bottom-2 px-5 bg-[#FFD700] text-[#123AAA] rounded-xl font-black text-[10px] uppercase tracking-tighter shadow-lg hover:scale-[1.02] active:scale-95 transition-all duration-300 flex items-center gap-2 cursor-pointer"
                 >
-                  Enviar <Send size={14} />
+                  {sending ? "..." : "Enviar"} <Send size={14} />
                 </button>
               </div>
+
+              <label className="flex items-start gap-3 text-[10px] text-white/50 leading-relaxed">
+                <input
+                  type="checkbox"
+                  required
+                  checked={acceptedPrivacy}
+                  onChange={(e) => setAcceptedPrivacy(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-[#FFD700]"
+                />
+                <span>
+                  Li e aceito o tratamento dos meus dados para receber novidades
+                  da Universal, conforme a{" "}
+                  <a
+                    href="/politica-de-privacidade"
+                    className="text-[#FFD700] font-bold hover:underline"
+                  >
+                    Política de Privacidade e LGPD
+                  </a>
+                  .
+                </span>
+              </label>
             </form>
 
             {/* Resolvido o atropelamento: Isolado com margem de segurança */}
@@ -141,9 +181,12 @@ export default function FooterSection() {
             </div>
           </div>
           
-          <p className="text-white/70 font-medium text-[11px] tracking-wide antialiased">
-            Desde 1974 construindo o amanhã
-          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-4 text-white/70 font-medium text-[11px] tracking-wide antialiased">
+            <p>Desde 1974 construindo o amanhã</p>
+            <a href="/politica-de-privacidade" className="hover:text-[#FFD700] transition-colors">
+              Política de Privacidade e LGPD
+            </a>
+          </div>
         </div>
 
       </div>

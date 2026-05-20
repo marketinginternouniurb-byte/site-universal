@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from '@tanstack/react-router';
-import { Menu, X, Phone, Building2, Users, Rocket, Award } from 'lucide-react';
+import { Menu, X, Phone, Building2, Users, Rocket, Award, ShieldCheck } from 'lucide-react';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuFixed, setIsMenuFixed] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,7 +14,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isMenuVisible = isMenuFixed || isHovering;
+  const isMenuVisible = isMenuFixed;
 
   return (
     <>
@@ -40,13 +39,11 @@ export default function Navbar() {
           </Link>
 
           {/* BOTÃO HAMBÚRGUER */}
-          <div 
-            className="relative group"
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
-          >
+          <div className="relative group">
             <button 
               onClick={() => setIsMenuFixed(!isMenuFixed)}
+              aria-label={isMenuFixed ? "Fechar menu" : "Abrir menu"}
+              aria-expanded={isMenuFixed}
               className={`p-3 rounded-xl transition-all duration-300 border shadow-lg ${
                 isMenuFixed ? 'bg-[#FFD700] border-[#FFD700]' : 'bg-[#123AAA]/80 border-[#FFD700]/40'
               }`}
@@ -64,7 +61,7 @@ export default function Navbar() {
                 isMenuVisible ? 'scale-100 opacity-100 visible' : 'scale-90 opacity-0 invisible'
               }`}
             >
-              <div className="p-8 flex flex-col gap-6">
+              <div className="p-8 flex flex-col gap-5">
                 {/* Item 1.4: Redirecionamento configurado para descer até a âncora da página inicial */}
                 <a 
                   href="/#ancora-lotes" 
@@ -97,6 +94,17 @@ export default function Navbar() {
                     <Phone className="w-5 h-5" />
                   </div>
                   <span className="font-bold uppercase tracking-widest text-sm">Contato</span>
+                </Link>
+
+                <Link
+                  to="/politica-de-privacidade"
+                  onClick={() => setIsMenuFixed(false)}
+                  className="group flex items-center gap-4 text-white hover:text-[#FFD700] transition-colors"
+                >
+                  <div className="p-2 bg-white/5 rounded-lg group-hover:bg-[#FFD700]/20 transition-colors">
+                    <ShieldCheck className="w-5 h-5" />
+                  </div>
+                  <span className="font-bold uppercase tracking-widest text-sm">Privacidade e LGPD</span>
                 </Link>
 
                 <div className="h-px bg-white/10 my-2"></div>

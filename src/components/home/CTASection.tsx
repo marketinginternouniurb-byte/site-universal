@@ -27,7 +27,7 @@ export default function CTASection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://wa.me/5527999999999"
+              href="https://wa.me/552728880001"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-primary text-secondary font-bold hover:scale-[1.03] transition shadow-xl shadow-primary/30"
@@ -35,10 +35,10 @@ export default function CTASection() {
               <MessageCircle className="w-5 h-5" /> Quero Falar com Consultor!
             </a>
             <a
-              href="tel:+5527999999999"
+              href="tel:+552728880001"
               className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white/10 border border-white/30 text-white font-semibold hover:bg-white/20 backdrop-blur transition"
             >
-              <Phone className="w-5 h-5" /> (27) 99999-9999
+              <Phone className="w-5 h-5" /> (27) 2888-0001
             </a>
           </div>
         </motion.div>

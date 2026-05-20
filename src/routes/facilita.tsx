@@ -13,10 +13,17 @@ function Facilita() {
   const [whatsapp, setWhatsapp] = useState('');
   const [email, setEmail] = useState('');
   const [interesse, setInteresse] = useState('');
+  const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!acceptedPrivacy) {
+      alert("Para continuar, aceite a Política de Privacidade e LGPD.");
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
@@ -34,13 +41,14 @@ function Facilita() {
       alert("Inscrição realizada com sucesso! Redirecionando para o nosso WhatsApp...");
       
       const message = `Olá! Quero entrar no Programa Facilita para o projeto: ${interesse}. Meu nome é ${nome}.`;
-      const whatsappNumber = "5527999999999"; 
+      const whatsappNumber = "552728880001"; 
       window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
       setNome('');
       setWhatsapp('');
       setEmail('');
       setInteresse('');
+      setAcceptedPrivacy(false);
 
     } catch (err) {
       console.error("Erro ao salvar lead:", err);
@@ -185,6 +193,24 @@ function Facilita() {
                 <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-[#FFD700] pointer-events-none w-6 h-6" />
               </div>
             </div>
+
+            <label className="flex items-start gap-3 text-xs text-white/60 leading-relaxed font-medium">
+              <input
+                type="checkbox"
+                required
+                checked={acceptedPrivacy}
+                onChange={(e) => setAcceptedPrivacy(e.target.checked)}
+                className="mt-0.5 h-4 w-4 shrink-0 accent-[#FFD700]"
+              />
+              <span>
+                Li e aceito o tratamento dos meus dados para atendimento e
+                comunicações sobre o Programa Facilita, conforme a{" "}
+                <a href="/politica-de-privacidade" className="text-[#FFD700] font-bold hover:underline">
+                  Política de Privacidade e LGPD
+                </a>
+                .
+              </span>
+            </label>
 
             <button disabled={isSubmitting} type="submit" className="w-full py-6 bg-[#FFD700] text-[#123AAA] font-black uppercase tracking-widest rounded-2xl hover:scale-[1.03] active:scale-95 transition-all flex items-center justify-center gap-4 shadow-[0_25px_50px_rgba(0,0,0,0.4)]">
               {isSubmitting ? "Enviando..." : "QUERO ENTRAR NO PROGRAMA"}

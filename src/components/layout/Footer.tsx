@@ -74,11 +74,11 @@ export default function Footer() {
             <ul className="space-y-3 text-sm opacity-90">
               <li className="flex gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary" />
-                Av. Nossa Sra. da Penha, 2190, Vitória - ES
+                Villagio Limoeiro - Torre Sul, Serra - ES
               </li>
               <li className="flex gap-2">
                 <Phone className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary" />
-                (27) 99999-9999
+                (27) 2888-0001
               </li>
               <li className="flex gap-2">
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary" />
@@ -114,7 +114,7 @@ export default function Footer() {
 
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-2 text-xs opacity-70">
           <p>© 2024 Universal Imobiliária e Urbanismo. Todos os direitos reservados.</p>
-          <p>CRECI-ES 0000-J</p>
+          <p>CRECI-ES 12243-J</p>
         </div>
       </div>
     </footer>

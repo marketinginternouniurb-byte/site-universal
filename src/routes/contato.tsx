@@ -6,6 +6,14 @@ import PageShell from "@/components/layout/PageShell";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
+const contact = {
+  address: "Villagio Limoeiro - Torre Sul, Serra - ES",
+  phone: "(27) 2888-0001",
+  email: "contato@universalurbanismo.com.br",
+  hours: "Seg a Sex · 8h às 18h",
+  whatsapp: "552728880001",
+};
+
 export const Route = createFileRoute("/contato")({
   head: () => ({
     meta: [
@@ -19,18 +27,25 @@ export const Route = createFileRoute("/contato")({
 });
 
 const infos = [
-  { icon: MapPin, title: "Endereço", text: "Av. Nossa Sra. da Penha, 2190, Vitória - ES" },
-  { icon: Phone, title: "Telefone", text: "(27) 99999-9999" },
-  { icon: Mail, title: "E-mail", text: "contato@universalurbanismo.com.br" },
-  { icon: Clock, title: "Horário", text: "Seg a Sex · 8h às 18h" },
+  { icon: MapPin, title: "Endereço", text: contact.address },
+  { icon: Phone, title: "Telefone", text: contact.phone },
+  { icon: Mail, title: "E-mail", text: contact.email },
+  { icon: Clock, title: "Horário", text: contact.hours },
 ];
 
 function Contato() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
   const [sending, setSending] = useState(false);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!acceptedPrivacy) {
+      toast.error("Para continuar, aceite a Política de Privacidade e LGPD.");
+      return;
+    }
+
     setSending(true);
     const { error } = await supabase.from("leads").insert({
       name: form.name,
@@ -45,6 +60,7 @@ function Contato() {
     }
     toast.success("Mensagem enviada! Em breve entraremos em contato.");
     setForm({ name: "", email: "", phone: "", message: "" });
+    setAcceptedPrivacy(false);
   };
 
   return (
@@ -85,7 +101,7 @@ function Contato() {
               </motion.div>
             ))}
             <a
-              href="https://wa.me/5527999999999"
+              href={`https://wa.me/${contact.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-green-500 hover:bg-green-600 text-white font-bold transition"
@@ -148,6 +164,27 @@ function Contato() {
               >
                 <Send className="w-4 h-4" /> {sending ? "Enviando…" : "Enviar Mensagem"}
               </button>
+
+              <label className="flex items-start gap-3 text-xs text-muted-foreground leading-relaxed">
+                <input
+                  type="checkbox"
+                  required
+                  checked={acceptedPrivacy}
+                  onChange={(e) => setAcceptedPrivacy(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-secondary"
+                />
+                <span>
+                  Li e aceito o tratamento dos meus dados para atendimento,
+                  conforme a{" "}
+                  <a
+                    href="/politica-de-privacidade"
+                    className="font-semibold text-secondary hover:underline"
+                  >
+                    Política de Privacidade e LGPD
+                  </a>
+                  .
+                </span>
+              </label>
             </form>
           </div>
         </div>
