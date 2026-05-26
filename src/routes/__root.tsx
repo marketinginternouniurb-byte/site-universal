@@ -4,11 +4,14 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
 import { AuthProvider } from "@/lib/auth-context";
+import CookieConsent from "@/components/shared/CookieConsent";
+import WhatsAppButton from "@/components/shared/WhatsAppButton";
 
 import appCss from "../styles.css?url";
 
@@ -70,10 +73,15 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const showPublicChat = !pathname.startsWith("/admin") && pathname !== "/login";
+
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <Outlet />
+        {showPublicChat && <WhatsAppButton />}
+        <CookieConsent />
         <Toaster />
       </AuthProvider>
     </QueryClientProvider>

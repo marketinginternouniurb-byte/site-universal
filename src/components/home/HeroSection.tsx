@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, MapPin } from 'lucide-react';
-import { Link } from '@tanstack/react-router';
 
 export default function HeroSection() {
   // Função para fazer a tela deslizar de forma perfeitamente suave
@@ -46,12 +45,12 @@ export default function HeroSection() {
           <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
             
             {/* PROGRAMA FACILITA */}
-            <Link 
-              to="/facilita" 
+            <a
+              href="https://site-universal.vercel.app/facilita"
               className="w-full sm:w-auto bg-[#FFD700] hover:bg-[#e6bd00] text-[#123AAA] px-8 py-4 rounded-full font-black uppercase tracking-widest text-sm hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 shadow-[0_15px_35px_rgba(255,215,0,0.4)] text-decoration-none"
             >
               Programa Facilita <ArrowRight className="w-5 h-5 stroke-[3]" />
-            </Link>
+            </a>
             
             {/* NOSSOS EMPREENDIMENTOS - Rolagem via JavaScript */}
             <button 

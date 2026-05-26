@@ -78,7 +78,7 @@ const sections = [
     list: [
       "Dados de identificação e contato, como nome, telefone, e-mail, CPF, RG e endereço, quando fornecidos pelo titular.",
       "Dados informados em formulários de contato, cadastros, solicitações de proposta, inscrições em programas, atendimento por WhatsApp, e-mail ou redes sociais.",
-      "Dados técnicos de navegação, como endereço IP, tipo de navegador, sistema operacional, páginas acessadas, origem do acesso e tempo de visita.",
+      "Dados técnicos de navegação necessários ao funcionamento do site, como endereço IP, tipo de navegador, sistema operacional, registros de acesso e dados de segurança gerados pela infraestrutura utilizada.",
       "Dados de autenticação e sessão de usuários administrativos, armazenados por tecnologias como localStorage quando o login é utilizado.",
       "Informações financeiras, comerciais ou de pagamento quando necessárias para análise, negociação, compra, venda ou financiamento de lotes.",
     ],
@@ -90,8 +90,8 @@ const sections = [
       "Responder dúvidas, solicitações, contatos comerciais e pedidos de proposta.",
       "Gerenciar relacionamento com clientes, interessados, compradores, parceiros e fornecedores.",
       "Executar contratos, procedimentos preliminares e rotinas relacionadas à compra e venda de lotes.",
-      "Enviar comunicações institucionais, novidades, lançamentos e oportunidades, respeitando as opções de consentimento e descadastro aplicáveis.",
-      "Melhorar a experiência de navegação, medir desempenho do site e aprimorar produtos, serviços e campanhas.",
+      "Enviar comunicações institucionais, novidades, lançamentos e oportunidades quando o usuário solicitar ou autorizar.",
+      "Melhorar a experiência de navegação e medir desempenho do site apenas quando houver base legal adequada e, para cookies não essenciais, conforme a preferência registrada pelo usuário.",
       "Cumprir obrigações legais, regulatórias, fiscais, administrativas e judiciais.",
       "Prevenir fraudes, proteger sistemas, preservar a segurança da informação e exercer direitos em processos administrativos ou judiciais.",
     ],
@@ -101,7 +101,7 @@ const sections = [
     title: "5. Compartilhamento e transferência de dados",
     text: [
       "Dados pessoais podem ser compartilhados com colaboradores, consultores, prestadores de serviço, parceiros comerciais, instituições financeiras, cartórios, órgãos públicos, autoridades administrativas ou judiciais, sempre que necessário para cumprir as finalidades desta política ou exigências legais.",
-      "O site utiliza fornecedores de infraestrutura e tecnologia, como Supabase, provedores de hospedagem, Google Fonts e serviços externos acessados voluntariamente pelo usuário, como WhatsApp, Instagram, Facebook, TikTok e YouTube.",
+      "O site utiliza fornecedores de infraestrutura e tecnologia, como Supabase, provedores de hospedagem, Google Fonts e serviços externos acessados voluntariamente pelo usuário, como WhatsApp, Instagram, Facebook, TikTok e YouTube. Esses serviços podem tratar dados conforme suas próprias políticas quando o usuário interage com eles.",
       "A Universal Urbanismo não vende nem aluga dados pessoais. O compartilhamento para ações de marketing de terceiros depende de consentimento prévio do titular.",
       "Algumas informações podem ser armazenadas ou processadas em servidores no Brasil ou no exterior, desde que adotadas salvaguardas compatíveis com a LGPD.",
     ],
@@ -130,11 +130,13 @@ const sections = [
   },
   {
     icon: Cookie,
-    title: "8. Cookies e tecnologias semelhantes",
+    title: "8. Cookies, preferências e tecnologias semelhantes",
     text: [
-      "O site pode utilizar cookies e tecnologias similares para funcionamento, segurança, análise de desempenho, melhoria da navegação e personalização de conteúdo.",
-      "Também podemos usar armazenamento local do navegador para manter sessões de usuários administrativos e preferências técnicas necessárias ao funcionamento da aplicação.",
-      "O usuário pode configurar o navegador para bloquear ou excluir cookies. Algumas funcionalidades do site podem não funcionar corretamente caso cookies essenciais sejam desativados.",
+      "O site utiliza uma ferramenta de consentimento para registrar preferências de cookies. Cookies essenciais permanecem ativos porque são necessários para segurança, funcionamento, login administrativo, prevenção de abusos e registro da própria preferência de privacidade.",
+      "A preferência é registrada pelo cookie essencial universal_cookie_consent e por armazenamento local equivalente. A autenticação administrativa do Supabase também pode usar localStorage para manter a sessão de usuários autorizados.",
+      "Cookies de analytics e marketing permanecem desativados por padrão e só podem ser usados após autorização do usuário. Atualmente, o site não carrega scripts próprios de analytics ou pixels de marketing antes dessa autorização.",
+      "As preferências são armazenadas em cookie e localStorage do navegador. O usuário pode revisar ou alterar sua escolha a qualquer momento pelo link “Revisar cookies” no rodapé.",
+      "O usuário também pode configurar o navegador para bloquear ou excluir cookies. Algumas funcionalidades do site podem não funcionar corretamente caso cookies essenciais sejam desativados.",
     ],
   },
   {

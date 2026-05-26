@@ -74,7 +74,7 @@ export default function ServicesSection() {
               </div>
 
               <a 
-                href={p.facilita ? "/facilita" : "/contato"} 
+                href={p.facilita ? "https://site-universal.vercel.app/facilita" : "/contato"} 
                 className={`mt-6 block w-full py-3 rounded-xl font-bold transition-all ${p.facilita ? 'bg-[#FFD700] text-[#123AAA] hover:scale-105' : 'bg-[#123AAA] text-white hover:bg-[#123AAA]/90'}`}
               >
                 {p.facilita ? "Garantir Preferência" : "Ver Detalhes"}

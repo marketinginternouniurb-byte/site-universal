@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MapPin, Phone, Mail, Instagram, Facebook, Music2, Send } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { openCookiePreferences } from "@/lib/cookie-consent";
 
 export default function FooterSection() {
   const [email, setEmail] = useState("");
@@ -186,6 +187,13 @@ export default function FooterSection() {
             <a href="/politica-de-privacidade" className="hover:text-[#FFD700] transition-colors">
               Política de Privacidade e LGPD
             </a>
+            <button
+              type="button"
+              onClick={openCookiePreferences}
+              className="hover:text-[#FFD700] transition-colors"
+            >
+              Revisar cookies
+            </button>
           </div>
         </div>
 

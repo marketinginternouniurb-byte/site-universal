@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from '@tanstack/react-router';
-import { Menu, X, Phone, Building2, Users, Rocket, Award, ShieldCheck } from 'lucide-react';
+import { Menu, X, Phone, Building2, Users, Award, ShieldCheck } from 'lucide-react';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -111,10 +111,17 @@ export default function Navbar() {
 
                 <Link 
                   to="/facilita" 
+                  onClick={() => setIsMenuFixed(false)}
                   className="flex items-center gap-4 bg-[#FFD700] text-[#123AAA] p-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:scale-[1.03] transition-transform shadow-[0_10px_20px_rgba(255,215,0,0.2)]"
                 >
-                  <Rocket className="w-5 h-5" />
-                  <span>Programa Facilita</span>
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[#123AAA]">
+                    <img
+                      src="/facilita-logo.png"
+                      alt=""
+                      className="h-full w-full object-cover"
+                    />
+                  </span>
+                  <span>Facilita</span>
                 </Link>
               </div>
               

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { MapPin, Phone, Mail, Instagram, Facebook, Youtube, ArrowRight } from "lucide-react";
+import { openCookiePreferences } from "@/lib/cookie-consent";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -114,7 +115,12 @@ export default function Footer() {
 
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-2 text-xs opacity-70">
           <p>© 2024 Universal Imobiliária e Urbanismo. Todos os direitos reservados.</p>
-          <p>CRECI-ES 12243-J</p>
+          <div className="flex flex-wrap gap-3">
+            <button type="button" onClick={openCookiePreferences} className="hover:text-primary">
+              Revisar cookies
+            </button>
+            <p>CRECI-ES 12243-J</p>
+          </div>
         </div>
       </div>
     </footer>
